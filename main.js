@@ -7,14 +7,14 @@ let ibk = {
 // Karte initialisieren
 let map = L.map("map", {
     fullscreenControl: true
-}).setView([ibk.lat, ibk.lng], 9);
+}).setView([ibk.lat, ibk.lng], 17);
 
 // thematische Layer
 let themaLayer = {
-    routen: L.featureGroup().addTo(map),
-    stops_bus: L.featureGroup().addTo(map),
-    stops_tram: L.featureGroup().addTo(map),
-    huetten: L.featureGroup().addTo(map)
+    routen: L.featureGroup(),
+    stops_bus: L.markerClusterGroup(),
+    stops_tram: L.markerClusterGroup({maxZoom:20}),
+    huetten: L.featureGroup()
 }
 
 // WMTS und Leaflet TileLayerProvider Hintergrundlayer
@@ -32,7 +32,7 @@ L.control.scale({
     imperial: false,
 }).addTo(map);
 
-//Mini Map 
+// Mini Map 
 let miniMap = new L.Control.MiniMap(L.tileLayer.provider("OpenStreetMap.DE"),{toggleDisplay:true,minimized:true}).addTo(map);
 
 // Rainviewer Plugin
