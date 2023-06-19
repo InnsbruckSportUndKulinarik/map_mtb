@@ -69,7 +69,7 @@ function writeHuettenLayer(jsondata) {
         }
     }).addTo(themaLayer.huetten)
 }
-
+writeHuettenLayer(data/Hütten_Tirol.geojson)
 // Haltestellen (Bus)
 function writeBusLayer(jsondata) {
     L.geoJSON(jsondata, {
@@ -90,9 +90,9 @@ function writeBusLayer(jsondata) {
         }
     }).addTo(themaLayer.stops_bus)
 }
-
+writeBusLayer(data/bus_stop.geojson);
 // Haltestellen (Tram)
-function writeBusLayer(jsondata) {
+function writeTramLayer(jsondata) {
     L.geoJSON(jsondata, {
         pointToLayer: function (feature, latlng) {
             return L.marker(latlng, {
@@ -111,3 +111,5 @@ function writeBusLayer(jsondata) {
         }
     }).addTo(themaLayer.stops_tram)
 }
+writeTramLayer(data/tram_stop.geojson);
+
