@@ -32,6 +32,9 @@ L.control.scale({
     imperial: false,
 }).addTo(map);
 
+//Mini Map 
+let miniMap = new L.Control.MiniMap(L.tileLayer.provider("OpenStreetMap.DE"),{toggleDisplay:true,minimized:true}).addTo(map);
+
 // Rainviewer Plugin
 L.control.rainviewer({ 
     position: 'bottomleft',
