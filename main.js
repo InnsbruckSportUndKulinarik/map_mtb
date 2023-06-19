@@ -12,14 +12,16 @@ let map = L.map("map", {
 // thematische Layer
 let themaLayer = {
     routen: L.featureGroup(),
-    stops: L.featureGroup(),
+    stops_bus: L.featureGroup(),
+    stops_tram: L.featureGroup(),
     huetten: L.featureGroup()
 }
 
 // WMTS und Leaflet TileLayerProvider Hintergrundlayer
 let layercontrol = L.control.layers({"Esri WorldTopoMap": L.tileLayer.provider("Esri.WorldTopoMap") }, {
     "Mountainbikerouten": themaLayer.routen,
-    "ÖPNV-Haltestellen": themaLayer.stops,
+    "ÖPNV-Bus": themaLayer.stops_bus,
+    "ÖPNV-Tram": themaLayer.stops_tram,
     "Hütten": themaLayer.huetten
 }).addTo(map)
 
@@ -66,4 +68,46 @@ function writeHuettenLayer(jsondata) {
         `);
         }
     }).addTo(themaLayer.huetten)
+}
+
+// Haltestellen (Bus)
+function writeBusLayer(jsondata) {
+    L.geoJSON(jsondata, {
+        pointToLayer: function (feature, latlng) {
+            return L.marker(latlng, {
+                icon: L.icon({
+                    iconUrl: "icons/busstop_1.png",
+                    iconAnchor: [16, 37],
+                    popupAnchor: [0, -37]
+                })
+            });
+        },
+        onEachFeature: function (feature, layer) {
+            let prop = feature.properties;
+            layer.bindPopup(`
+            <h1>${prop.name}</h1>
+        `);
+        }
+    }).addTo(themaLayer.stops_bus)
+}
+
+// Haltestellen (Tram)
+function writeBusLayer(jsondata) {
+    L.geoJSON(jsondata, {
+        pointToLayer: function (feature, latlng) {
+            return L.marker(latlng, {
+                icon: L.icon({
+                    iconUrl: "icons/tramstop_1.png",
+                    iconAnchor: [16, 37],
+                    popupAnchor: [0, -37]
+                })
+            });
+        },
+        onEachFeature: function (feature, layer) {
+            let prop = feature.properties;
+            layer.bindPopup(`
+            <h1>${prop.name}</h1>
+        `);
+        }
+    }).addTo(themaLayer.stops_tram)
 }
