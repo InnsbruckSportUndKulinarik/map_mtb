@@ -108,6 +108,7 @@ fetch("data/bus_stop.geojson")
       console.error("Error fetching GeoJSON data:", error);
   });
 // Haltestellen (Tram)
+
 function writeTramLayer(jsondata) {
     L.geoJSON(jsondata, {
         pointToLayer: function (feature, latlng) {
@@ -122,10 +123,17 @@ function writeTramLayer(jsondata) {
         onEachFeature: function (feature, layer) {
             let prop = feature.properties;
             layer.bindPopup(`
-            <h1>${prop.name}</h1>
+            <h1>${prop.name}
         `);
         }
-    }).addTo(themaLayer.stops_tram)
+    }).addTo(themaLayer.stops_tram);
 }
-writeTramLayer("data/tram_stop.geojson");
-
+//Funktion ausführen, indem JSON gefetched wird
+fetch("data/tram_stop.geojson")
+  .then(response => response.json())
+  .then(jsondata => {
+      writeTramLayer(jsondata);
+  })
+  .catch(error => {
+      console.error("Error fetching GeoJSON data:", error);
+  });
