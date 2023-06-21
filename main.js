@@ -73,11 +73,6 @@ L.control.rainviewer({
 let controlElevation = L.control.elevation({time: false, elevationDiv: "#profile", height: 300,theme:"bike-tirol"}
 ).addTo(map);
 
-//All file paths of the GPX directory are written into a array to be further processed
-
-controlElevation.load("data/GPX_bike/lanser-alm-5004.gpx");
-controlElevation.load("data/GPX_bike/mutterer-drei-almenrunde.gpx");
-
 // Hütten 
 function writeHuettenLayer(jsondata) {
     L.geoJSON(jsondata, {
