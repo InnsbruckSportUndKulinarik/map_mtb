@@ -124,7 +124,7 @@ function writeBusLayer(jsondata) {
     }).addTo(themaLayer.stops_bus);
 }
 //Funktion ausführen, indem JSON gefetched wird
-fetch("data/bus_stop.geojson")
+fetch("data/bus_stop_reduced.geojson")
     .then(response => response.json())
     .then(jsondata => {
         writeBusLayer(jsondata);
@@ -132,8 +132,8 @@ fetch("data/bus_stop.geojson")
     .catch(error => {
         console.error("Error fetching GeoJSON data:", error);
     });
-// Haltestellen (Tram)
 
+// Haltestellen (Tram)
 function writeTramLayer(jsondata) {
     L.geoJSON(jsondata, {
         pointToLayer: function (feature, latlng) {
@@ -154,7 +154,7 @@ function writeTramLayer(jsondata) {
     }).addTo(themaLayer.stops_tram);
 }
 //Funktion ausführen, indem JSON gefetched wird
-fetch("data/tram_stop.geojson")
+fetch("data/tram_stop_reduced.geojson")
     .then(response => response.json())
     .then(jsondata => {
         writeTramLayer(jsondata);
