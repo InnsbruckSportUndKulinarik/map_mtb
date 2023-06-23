@@ -20,7 +20,8 @@ let themaLayer = {
 // WMTS und Leaflet TileLayerProvider Hintergrundlayer
 let layercontrol = L.control.layers({
     "Esri WorldTopoMap": L.tileLayer.provider("Esri.WorldTopoMap"),
-    "BasemapAT Orthofoto": L.tileLayer.provider("BasemapAT.orthofoto").addTo(map)
+    "Orthofoto": L.tileLayer.provider("BasemapAT.orthofoto").addTo(map),
+    "Geländeschummerung": L.tileLayer.provider("BasemapAT.surface").addTo(map)
 }, {
     "Mountainbikerouten": themaLayer.routen,
     "ÖPNV-Bus": themaLayer.stops_bus,
