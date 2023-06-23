@@ -40,7 +40,7 @@ let miniMap = new L.Control.MiniMap(L.tileLayer.provider("OpenStreetMap.DE"), { 
 
 //Lokalisierungsservice
 map.locate({watch:true,maxZoom: 18});
-//FUnktionen für Events Lokalisierung gefunden oder Error message
+//Funktionen für Events Lokalisierung gefunden oder Error message
 map.on('locationerror', function onLocationError(evt) {
     alert(evt.message);
 });
