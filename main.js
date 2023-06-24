@@ -23,10 +23,9 @@ let layercontrol = L.control.layers({
     "Orthofoto": L.tileLayer.provider("BasemapAT.orthofoto").addTo(map),
     "Geländeschummerung": L.tileLayer.provider("BasemapAT.surface").addTo(map)
 }, {
-    "Mountainbikerouten": themaLayer.routen,
     "ÖPNV-Bus": themaLayer.stops_bus,
     "ÖPNV-Tram": themaLayer.stops_tram,
-    "Hütten": themaLayer.huetten
+    "Hütten": themaLayer.huetten.addTo(map)
 }).addTo(map)
 
 layercontrol.expand()
@@ -176,14 +175,21 @@ fetch("data/tram_stop_reduced.geojson")
       }).addTo(map);
     });
     
-      // Load each GPX file separately
-      gpxfiles.forEach((gpxFile) => {
+    gpxfiles.forEach((gpxFile) => {
         const gpxFilePath = path.join(gpxFile);
         new L.GPX(gpxFilePath, { async: true }).on('loaded', (e) => {
           const gpxLayer = e.target;
           map.fitBounds(gpxLayer.getBounds());
+      
+          // Retrieve elevation data for the track
+          retrieveElevationData(gpxLayer.getLatLngs(), (elevationData) => {
+            // Process the elevation data as per your requirements
+            // You can store it, display it on the map, or perform any other operations
+            // with the elevation data
+          });
+      
           gpxLayer.addTo(map);
         });
       });
-
-   
+      
+      
