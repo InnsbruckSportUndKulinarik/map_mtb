@@ -168,7 +168,7 @@ fetch("data/tram_stop_reduced.geojson")
         console.error("Error fetching GeoJSON data:", error);
     });
 
-    let gpxfiles = ['data/GPX_bike/aldranser-alm-554.gpx', 'data/GPX_bike/gasthof-rauschbrunnen', 'data/GPX_bike/hoettinger-alm-505.gpx','data/GPX_bike/kreither-almweg-511.gpx','data/GPX_bike/lanser-alm-5004.gpx','data/GPX_bike/mutterer-drei-almen-runde.gpx','data/GPX_bike/nordkette-almenrunde.gpx','data/GPX_bike/patscherkofel-gipfel-501.gpx','data/GPX_bike/raitiser-almweg-512.gpx','dat/GPX_bike/rinner-alm-518.gpx','data/GPX_bike/rumer-alm-513.gpx','data/GPX_bike/seegrube-nordkette-506.gpx','data/GPX_bike/sistranser-alm-515.gpx','data/GPX_bike/vom-rauschbrunnen-zur-hoettinger-alm.gpx'];
+    let gpxfiles = ['data/GPX_bike/aldranser-alm-554.gpx','data/GPX_bike/gasthof-rauschbrunnen.gpx', 'data/GPX_bike/hoettinger-alm-505.gpx','data/GPX_bike/kreither-almweg-511.gpx','data/GPX_bike/lanser-alm-5004.gpx','data/GPX_bike/mutterer-drei-almen-runde.gpx','data/GPX_bike/nordkette-almenrunde.gpx','data/GPX_bike/patscherkofel-gipfel-501.gpx','data/GPX_bike/raitiser-almweg-512.gpx','dat/GPX_bike/rinner-alm-518.gpx','data/GPX_bike/rumer-alm-513.gpx','data/GPX_bike/seegrube-nordkette-506.gpx','data/GPX_bike/sistranser-alm-515.gpx','data/GPX_bike/vom-rauschbrunnen-zur-hoettinger-alm.gpx'];
 
     gpxfiles.forEach(function(gpxFile) {
       new L.GPX(gpxFile, { async: true }).on('loaded', function(e) {
@@ -177,11 +177,13 @@ fetch("data/tram_stop_reduced.geojson")
     });
     
       // Load each GPX file separately
-      gpxFiles.forEach((gpxFile) => {
-        const gpxFilePath = path.join(gpxDirectory, gpxFile);
+      gpxfiles.forEach((gpxFile) => {
+        const gpxFilePath = path.join(gpxFile);
         new L.GPX(gpxFilePath, { async: true }).on('loaded', (e) => {
           const gpxLayer = e.target;
           map.fitBounds(gpxLayer.getBounds());
           gpxLayer.addTo(map);
         });
       });
+
+   
