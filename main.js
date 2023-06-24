@@ -39,14 +39,14 @@ L.control.scale({
 let miniMap = new L.Control.MiniMap(L.tileLayer.provider("OpenStreetMap.DE"), { toggleDisplay: true, minimized: true }).addTo(map);
 
 //Lokalisierungsservice
-map.locate({watch:true,maxZoom: 18});
+map.locate({ watch: true, maxZoom: 18 });
 //Funktionen für Events Lokalisierung gefunden oder Error message
 map.on('locationerror', function onLocationError(evt) {
     alert(evt.message);
 });
 
-let circle = L.circle([0,0]).addTo(map);
-let marker = L.marker([0,0]).addTo(map);
+let circle = L.circle([0, 0]).addTo(map);
+let marker = L.marker([0, 0]).addTo(map);
 
 map.on('locationfound', function onLocationFound(evt) {
     console.log(evt)
@@ -69,9 +69,9 @@ L.control.rainviewer({
     opacity: 0.5
 }).addTo(map);
 
-//GPX Track visualisieren 
-let controlElevation = L.control.elevation({time: false, elevationDiv: "#profile", height: 300,theme:"bike-tirol"}
-).addTo(map);
+
+
+
 
 // Hütten 
 function writeHuettenLayer(jsondata) {
@@ -167,29 +167,58 @@ fetch("data/tram_stop_reduced.geojson")
         console.error("Error fetching GeoJSON data:", error);
     });
 
-    let gpxfiles = ['data/GPX_bike/aldranser-alm-554.gpx','data/GPX_bike/gasthof-rauschbrunnen.gpx', 'data/GPX_bike/hoettinger-alm-505.gpx','data/GPX_bike/kreither-almweg-511.gpx','data/GPX_bike/lanser-alm-5004.gpx','data/GPX_bike/mutterer-drei-almen-runde.gpx','data/GPX_bike/nordkette-almenrunde.gpx','data/GPX_bike/patscherkofel-gipfel-501.gpx','data/GPX_bike/raitiser-almweg-512.gpx','dat/GPX_bike/rinner-alm-518.gpx','data/GPX_bike/rumer-alm-513.gpx','data/GPX_bike/seegrube-nordkette-506.gpx','data/GPX_bike/sistranser-alm-515.gpx','data/GPX_bike/vom-rauschbrunnen-zur-hoettinger-alm.gpx'];
-
-    gpxfiles.forEach(function(gpxFile) {
-      new L.GPX(gpxFile, { async: true }).on('loaded', function(e) {
-        map.fitBounds(e.target.getBounds());
+    let controlElevation = L.control.elevation({
+        time: false,
+        elevationDiv: "#profile",
       }).addTo(map);
-    });
-    
-    gpxfiles.forEach((gpxFile) => {
-        const gpxFilePath = path.join(gpxFile);
-        new L.GPX(gpxFilePath, { async: true }).on('loaded', (e) => {
-          const gpxLayer = e.target;
-          map.fitBounds(gpxLayer.getBounds());
       
-          // Retrieve elevation data for the track
-          retrieveElevationData(gpxLayer.getLatLngs(), (elevationData) => {
-            // Process the elevation data as per your requirements
-            // You can store it, display it on the map, or perform any other operations
-            // with the elevation data
+      const gpxfiles = [
+        'data/GPX_bike/aldranser-alm-554.gpx',
+        'data/GPX_bike/gasthof-rauschbrunnen.gpx',
+        'data/GPX_bike/hoettinger-alm-505.gpx',
+        'data/GPX_bike/kreither-almweg-511.gpx',
+        'data/GPX_bike/lanser-alm-5004.gpx',
+        'data/GPX_bike/mutterer-drei-almen-runde.gpx',
+        'data/GPX_bike/nordkette-almenrunde.gpx',
+        'data/GPX_bike/patscherkofel-gipfel-501.gpx',
+        'data/GPX_bike/raitiser-almweg-512.gpx',
+        'dat/GPX_bike/rinner-alm-518.gpx',
+        'data/GPX_bike/rumer-alm-513.gpx',
+        'data/GPX_bike/seegrube-nordkette-506.gpx',
+        'data/GPX_bike/sistranser-alm-515.gpx',
+        'data/GPX_bike/vom-rauschbrunnen-zur-hoettinger-alm.gpx'
+      ];
+      
+      gpxfiles.forEach((gpxFile) => {
+        new L.GPX(gpxFile, {
+          async: true,
+          polyline_options: {
+            color: 'blue',
+          },
+          marker_options: {
+            startIconUrl: '', // Remove start marker
+            endIconUrl: '', // Remove end marker
+            shadowUrl: '', // Remove shadow marker
+            icon: L.icon({
+                iconUrl: 'icons/restaurant.png', // Path to your custom marker icon
+                iconSize: [32, 32], // Adjust the size of the marker icon
+              }),
+          },
+        }).on('loaded', function(e) {
+          const gpxLayer = e.target;
+      
+          gpxLayer.on('click', function() {
+            controlElevation.clear();
+      
+            // Retrieve elevation data for the track segment
+            retrieveElevationData(gpxLayer.getLayers()[0].getLatLngs(), (elevationData) => {
+              controlElevation.addData(elevationData);
+            });
           });
       
+          map.fitBounds(gpxLayer.getBounds());
           gpxLayer.addTo(map);
         });
       });
       
-      
+    
