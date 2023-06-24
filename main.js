@@ -198,15 +198,14 @@ fetch("data/tram_stop_reduced.geojson")
           marker_options: {
             startIconUrl: '', // Remove start marker
             endIconUrl: '', // Remove end marker
-            shadowUrl: '', // Remove shadow marker
-            icon: L.icon({
-                iconUrl: 'icons/restaurant.png', // Path to your custom marker icon
-                iconSize: [32, 32], // Adjust the size of the marker icon
-              }),
+            shadowUrl: '',// Remove shadow marker
+            wptIconUrls: {
+                '': 'icons/restaurant.png'
+              },
           },
         }).on('loaded', function(e) {
           const gpxLayer = e.target;
-      
+          gpxLayer.get_name()
           gpxLayer.on('click', function() {
             controlElevation.clear();
       
