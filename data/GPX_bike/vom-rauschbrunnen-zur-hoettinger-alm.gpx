@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><gpx xmlns="http://www.topografix.com/GPX/1/1" creator="CONTWISE MAPS" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd http://www.topografix.com/GPX/gpx_overlay/0/3 http://www.topografix.com/GPX/gpx_overlay/0/3/gpx_overlay.xsd http://www.topografix.com/GPX/gpx_modified/0/1 http://www.topografix.com/GPX/gpx_modified/0/1/gpx_modified.xsd http://www.topografix.com/GPX/Private/TopoGrafix/0/3 http://www.topografix.com/GPX/Private/TopoGrafix/0/3/topografix.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.1"><wpt lon="11.3472" lat="47.27908"><name><![CDATA[alpengasthof_rauschbrunnen]]></name></wpt>
-<wpt lon="11.36699" lat="47.29856"><name><![CDATA[hoettinger_alm]]></name></wpt>
-<wpt lon="11.37943" lat="47.29248"><name><![CDATA[umbrueggler_alm]]></name></wpt>
-<wpt lon="11.36978" lat="47.28261"><name><![CDATA[hoettinger_bild_wallfahrtskapelle_maria_im_wald]]></name></wpt>
+<?xml version="1.0" encoding="UTF-8"?><gpx xmlns="http://www.topografix.com/GPX/1/1" creator="CONTWISE MAPS" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd http://www.topografix.com/GPX/gpx_overlay/0/3 http://www.topografix.com/GPX/gpx_overlay/0/3/gpx_overlay.xsd http://www.topografix.com/GPX/gpx_modified/0/1 http://www.topografix.com/GPX/gpx_modified/0/1/gpx_modified.xsd http://www.topografix.com/GPX/Private/TopoGrafix/0/3 http://www.topografix.com/GPX/Private/TopoGrafix/0/3/topografix.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.1"><wpt lon="11.3472" lat="47.27908"><name><![CDATA[Alpengasthof Rauschbrunnen]]></name></wpt>
+<wpt lon="11.36699" lat="47.29856"><name><![CDATA[Hoettinger Alm]]></name></wpt>
+<wpt lon="11.37943" lat="47.29248"><name><![CDATA[Umbrueggler Alm]]></name></wpt>
+<wpt lon="11.36978" lat="47.28261"><name><![CDATA[Hoettinger Bild Wallfahrtskapelle Maria im Wald]]></name></wpt>
 <trk><name><![CDATA[vom_rauschbrunnen_zur_hoettinger_alm_31006387]]></name><extensions><label xmlns="http://www.topografix.com/GPX/gpx_overlay/0/3"></label>
 </extensions>
 <trkseg><trkpt lon="11.34691" lat="47.279"><ele><![CDATA[1078]]></ele></trkpt>
