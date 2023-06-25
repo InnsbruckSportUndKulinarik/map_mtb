@@ -77,12 +77,31 @@
     <header>
         <img class="shadow" src="data/mtb.jpg" alt="Mountainbiken in Innsbruck">
     </header>
+    <nav>
+        <ul>
+            <li><a href="https://innsbrucksportundkulinarik.github.io/Startseite/">Start</a></li>
+            <li>
+                <a href="https://innsbrucksportundkulinarik.github.io/map_mtb/">Mountainbiketouren</a>
+                <ul>
+                    <li><a href="https://innsbrucksportundkulinarik.github.io/map_mtb/#nahverkehr">ÖPNV ÖBB</a></li>
+                    <li><a href="https://innsbrucksportundkulinarik.github.io/map_mtb/#sicherheit">Sicherheitshinweise</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="https://innsbrucksportundkulinarik.github.io/map_hike/">Wanderstrecken</a>
+                <ul>
+                    <li><a href="https://innsbrucksportundkulinarik.github.io/map_hike/#wetter">Bergwetter</a></li>
+                    <li><a href="https://innsbrucksportundkulinarik.github.io/map_hike/#ausrüstung">Ausrüstung</a>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="https://innsbrucksportundkulinarik.github.io/Startseite/#impressum">Impressum</a></li>
+        </ul>
+    </nav>
     <main>
-       
         
-            <h2><i class="fa-solid fa-person-biking"></i> Mountainbiken rund um Innsbruck</h2>
-            
-        
+        <h1><i class="fa-solid fa-person-biking"></i> Mountainbiketouren rund um Innsbruck</h1>
+        <br>
         <article>
             <p>Auf dieser Karte finden Sie alles, was das Herz eines Mountainbikers begehrt. Von gemütlichen
                 Rundfahrten über steile Anstiege bis hin zu rasanten Abfahrten ist für alle Sportbegeisterten etwas
@@ -96,14 +115,22 @@
                 Egal ob Sie ein erfahrener Mountainbiker sind oder gerade erst in diese aufregende Sportart einsteigen -
                 die Mountainbiketouren auf dieser Karte bieten Ihnen die Möglichkeit, die wunderschöne Landschaft rund
                 um Innsbruck auf zwei Rädern zu erkunden.
-             </p>
+            </p>
             <div id="map"></div>
             <div id="profile"></div>
-
+            <div>Datenquellen:
+                <a href="https://www.innsbruck.info/radsport/mountainbike/mountainbike-touren.html">Innsbruck Info: MTB
+                    Touren</a> |
+                <a href="https://welcome.openstreetmap.org/working-with-osm-data/downloading-and-using/">Open Street Map
+                    Daten</a> |
+                <a href="https://www.oebb.at/">ÖBB-Personenverkehr AG©</a>
+            </div><br>
             <div>
                 <i class="fab fa-github"></i> <a href="https://github.com/InnsbruckSportUndKulinarik/map_mtb">Github</a>
             </div>
             </script>
+            <hr>
+            <h3 id="nahverkehr">Öffentlicher Nahverkehr</h3>
             <script type="text/javascript">
                 var t_topMatches = "Toptreffer";
                 var t_lastInput = "Letzte Eingaben";
@@ -279,7 +306,8 @@
             <script language="JavaScript1.2" type="text/javascript">
                 var time = new Date();
             </script>
-            <h3>Sicher unterwegs auf dem Fahrrad in den Bergen</h3>
+            <hr>
+            <h3 id="sicherheit">Sicher unterwegs auf dem Fahrrad in den Bergen</h3>
             <p>Mountainbiken ist ein Ausdauersport, der Gesundheit und eine realistische Selbsteinschätzung voraussetzt.
                 Sorgfältige Planung mit allen zur Auswahl stehenden Hilfsmitteln, abgestimmt auf die aktuellen
                 (Wetter-)Verhältnisse, ist essenziell. Vor allem der technische Zustand des Bikes sollte vor jeder Fahrt
@@ -288,19 +316,20 @@
                 Weitere hilfreiche Tipps vom Alpenverein zum Thema Mountainbiken gibt's <a
                     href="https://magazin.alpenverein.de/artikel/mountainbiken-so-geht-das_f130c621-12a8-4962-b4d2-65dc852fa598">hier</a>.
             </p>
-
         </article>
-        <footer>
-            <strong>Datenquellen:</strong>
-            <nav>
-                <a href="https://www.innsbruck.info/radsport/mountainbike/mountainbike-touren.html">Innsbruck Info: MTB
-                    Touren</a> |
-                <a href="https://welcome.openstreetmap.org/working-with-osm-data/downloading-and-using/">Open Street Map
-                    Daten</a> |
-                <a href="https://www.oebb.at/">ÖBB-Personenverkehr AG©</a>
-            </nav>
-        </footer>
     </main>
+    <hr>
+        <footer>
+            <p id="impressum">Impressum</p>
+            <ul class="inline-list">
+                <li>Name: Julian, Sebastian, Tashi</li>
+                <li>Straße: Innstraße 123</li>
+                <li>PLZ, Ort: 6020 Innsbruck</li>
+                <li>Telefon: 0123456789</li>
+                <li>E-Mail: innsbruck@info.com</li>
+
+            </ul>
+        </footer>
 </body>
 
 </html>
