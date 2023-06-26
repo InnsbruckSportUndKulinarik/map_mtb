@@ -209,7 +209,7 @@ fetch("data/tram_stop_reduced.geojson")
           let name = e.target.get_name();
           let distance = e.target.get_distance();
           let elev_min = e.target.get_elevation_min();
-          let ele_max = e.target.get_elevation_max();
+          let elev_max = e.target.get_elevation_max();
           let elev_data = e.target.get_elevation_data();
           e.target.addTo(map);
         });
