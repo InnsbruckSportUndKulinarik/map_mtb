@@ -189,35 +189,25 @@ fetch("data/tram_stop_reduced.geojson")
         'data/GPX_bike/vom-rauschbrunnen-zur-hoettinger-alm.gpx'
       ];
       
-      gpxfiles.forEach((gpxFile) => {
+      let colors = ['red', 'blue', 'green', 'orange','purple','yellow','pink','black','darkgreen','lightblue'];
+
+      gpxfiles.forEach((gpxFile,index) => {
         new L.GPX(gpxFile, {
           async: true,
           polyline_options: {
-            color: 'blue',
+            color: colors[index % colors.length],
           },
           marker_options: {
-            startIconUrl: '', // Remove start marker
+            startIconUrl: 'icons/start.png', // Remove start marker
             endIconUrl: '', // Remove end marker
             shadowUrl: '',// Remove shadow marker
             wptIconUrls: {
-                '': 'icons/restaurant.png'
-              },
-          },
+              '': 'icons/restaurant.png'
+            },
+          }
         }).on('loaded', function(e) {
-          const gpxLayer = e.target;
-          gpxLayer.get_name()
-          gpxLayer.on('click', function() {
-            controlElevation.clear();
-      
-            // Retrieve elevation data for the track segment
-            retrieveElevationData(gpxLayer.getLayers()[0].getLatLngs(), (elevationData) => {
-              controlElevation.addData(elevationData);
-            });
-          });
-      
-          map.fitBounds(gpxLayer.getBounds());
-          gpxLayer.addTo(map);
+          map.fitBounds(e.target.getBounds());
+          e.target.addTo(map);
         });
       });
-      
     
