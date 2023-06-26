@@ -167,51 +167,55 @@ fetch("data/tram_stop_reduced.geojson")
         console.error("Error fetching GeoJSON data:", error);
     });
 
-    let controlElevation = L.control.elevation({
-        time: false,
-        elevationDiv: "#profile",
-      }).addTo(map);
-      
-      const gpxfiles = [
-        'data/GPX_bike/aldranser-alm-554.gpx',
-        'data/GPX_bike/gasthof-rauschbrunnen.gpx',
-        'data/GPX_bike/hoettinger-alm-505.gpx',
-        'data/GPX_bike/kreither-almweg-511.gpx',
-        'data/GPX_bike/lanser-alm-5004.gpx',
-        'data/GPX_bike/mutterer-drei-almen-runde.gpx',
-        'data/GPX_bike/nordkette-almenrunde.gpx',
-        'data/GPX_bike/patscherkofel-gipfel-501.gpx',
-        'data/GPX_bike/raitiser-almweg-512.gpx',
-        'dat/GPX_bike/rinner-alm-518.gpx',
-        'data/GPX_bike/rumer-alm-513.gpx',
-        'data/GPX_bike/seegrube-nordkette-506.gpx',
-        'data/GPX_bike/sistranser-alm-515.gpx',
-        'data/GPX_bike/vom-rauschbrunnen-zur-hoettinger-alm.gpx'
-      ];
-      
-      let colors = ['red', 'blue', 'green', 'orange','purple','yellow','pink','black','darkgreen','lightblue'];
+let controlElevation = L.control.elevation({
+    time: false,
+    elevationDiv: "#profile",
+}).addTo(map);
 
-      gpxfiles.forEach((gpxFile,index) => {
-        new L.GPX(gpxFile, {
-          async: true,
-          polyline_options: {
+const gpxfiles = [
+    'data/GPX_bike/aldranser-alm-554.gpx',
+    'data/GPX_bike/gasthof-rauschbrunnen.gpx',
+    'data/GPX_bike/hoettinger-alm-505.gpx',
+    'data/GPX_bike/kreither-almweg-511.gpx',
+    'data/GPX_bike/lanser-alm-5004.gpx',
+    'data/GPX_bike/mutterer-drei-almen-runde.gpx',
+    'data/GPX_bike/nordkette-almenrunde.gpx',
+    'data/GPX_bike/patscherkofel-gipfel-501.gpx',
+    'data/GPX_bike/raitiser-almweg-512.gpx',
+    'dat/GPX_bike/rinner-alm-518.gpx',
+    'data/GPX_bike/rumer-alm-513.gpx',
+    'data/GPX_bike/seegrube-nordkette-506.gpx',
+    'data/GPX_bike/sistranser-alm-515.gpx',
+    'data/GPX_bike/vom-rauschbrunnen-zur-hoettinger-alm.gpx'
+];
+
+let colors = ['red', 'blue', 'green', 'orange', 'purple', 'yellow', 'pink', 'black', 'darkgreen', 'lightblue'];
+
+gpxfiles.forEach((gpxFile, index) => {
+    new L.GPX(gpxFile, {
+        async: true,
+        polyline_options: {
             color: colors[index % colors.length],
-          },
-          marker_options: {
+        },
+        marker_options: {
             startIconUrl: 'icons/start.png', // Remove start marker
             endIconUrl: '', // Remove end marker
             shadowUrl: '',// Remove shadow marker
             wptIconUrls: {
-              '': 'icons/restaurant.png'
+                '': 'icons/restaurant.png'
             },
-          }
-        }).on('loaded', function(e) {
-          let name = e.target.get_name();
-          let distance = e.target.get_distance();
-          let elev_min = e.target.get_elevation_min();
-          let elev_max = e.target.get_elevation_max();
-          let elev_data = e.target.get_elevation_data();
-          e.target.addTo(map);
+        }
+    }).on('loaded', function (e) {
+        const gpxLayer = e.target;
+        gpxLayer.addTo(map);
+        gpxLayer.on('click', function (event) {
+            const layer = event.layer;
+            const name = layer.get_name();
+            const distance = layer.get_distance();
+            const ele_max = layer.get_elevation_max();
+            const elev_min = layer.get_elevation_min();
+            const elev_data = layer.get_elevation_data();
+            layer.bindPopup(`<b>Name: ${name}</b><br>Distance: ${distance}m<br>Elevation Min: ${elev_min}m<br>Elevation Max: ${ele_max}m<br>Average Elevation: ${elevationMean.toFixed(2)}m`).openPopup();
         });
-      });
-    
+    });
+});
