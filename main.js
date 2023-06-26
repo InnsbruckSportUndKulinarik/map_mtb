@@ -206,7 +206,6 @@ fetch("data/tram_stop_reduced.geojson")
             },
           }
         }).on('loaded', function(e) {
-          map.fitBounds(e.target.getBounds());
           e.target.addTo(map);
         });
       });
