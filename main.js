@@ -213,7 +213,7 @@ gpxfiles.forEach((gpxFile, index) => {
             let name = gpxLayer.get_name();
             let gpx_path = gpxFile;
             let website = 'https://www.innsbruck.info/radsport/mountainbike/mountainbike-touren/touren/' + gpx_path.replace(/^.*\/|\.gpx$/g, "") + '.html';
-            const firstLayer = gpxLayer.getLayers()[0];
+            let firstLayer = gpxLayer.getLayers()[0];
             firstLayer.bindPopup(`<b>${name}</b><br> <a href=${website} target="_blank">Weitere Informationen</a>`
             ).openPopup()
         });
