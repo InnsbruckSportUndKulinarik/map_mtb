@@ -7,7 +7,7 @@ let ibk = {
 // Karte initialisieren
 let map = L.map("map", {
     fullscreenControl: true
-}).setView([ibk.lat, ibk.lng], 9);
+}).setView([ibk.lat, ibk.lng], 12);
 
 // thematische Layer
 let themaLayer = {
@@ -182,14 +182,16 @@ const gpxfiles = [
     'data/GPX_bike/nordkette-almenrunde.gpx',
     'data/GPX_bike/patscherkofel-gipfel-501.gpx',
     'data/GPX_bike/raitiser-almweg-512.gpx',
-    'dat/GPX_bike/rinner-alm-518.gpx',
+    'data/GPX_bike/rinner-alm-518.gpx',
     'data/GPX_bike/rumer-alm-513.gpx',
     'data/GPX_bike/seegrube-nordkette-506.gpx',
     'data/GPX_bike/sistranser-alm-515.gpx',
     'data/GPX_bike/vom-rauschbrunnen-zur-hoettinger-alm.gpx'
 ];
 
-let colors = ['red', 'blue', 'green', 'orange', 'purple', 'yellow', 'pink', 'black', 'darkgreen', 'lightblue'];
+let colors = ['red', 'blue', 'green', 'orange', 'purple', 'yellow', 'pink', 'black', 'darkgreen', 'lightblue', 'lightred', 'brown', 'darkblue', 'darkyellow'];
+
+
 
 gpxfiles.forEach((gpxFile, index) => {
     new L.GPX(gpxFile, {
@@ -205,14 +207,16 @@ gpxfiles.forEach((gpxFile, index) => {
                 '': 'icons/restaurant.png'
             },
         }
-    }).addTo(map)
-    .on('loaded', function (e) {
+    }).addTo(map).on('loaded', function (e) {
+        const gpxLayer = e.target.addTo(map);
+        gpxLayer.on('click', function (event) {
+            let name = gpxLayer.get_name();
+            let gpx_path = gpxFile;
+            let website = 'https://www.innsbruck.info/radsport/mountainbike/mountainbike-touren/touren/' + gpx_path.replace(/^.*\/|\.gpx$/g, "") + '.html';
+            const firstLayer = gpxLayer.getLayers()[0];
+            firstLayer.bindPopup(`<b>${name}</b><br> <a href=${website} target="_blank">Weitere Informationen</a>`
+            ).openPopup()
         });
     });
+})
 
-    const gpxLayer = e.target;
-    gpxLayer.on('click', function (event) {
-        const layer = event.layer;
-        controlElevation.clear();
-        controlElevation.addData(layer);
-    });
