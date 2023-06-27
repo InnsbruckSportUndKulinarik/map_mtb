@@ -130,6 +130,10 @@ nav ul li:hover>a {
   }
   
   .image-description {
-    margin-left: 20px; /* Adjust the margin as needed */
+    margin-left: 20px; 
+  }
+  
+  h2 {
+    margin-bottom: 3px; 
   }
   
