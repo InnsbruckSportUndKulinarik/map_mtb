@@ -3,8 +3,14 @@
 body {
     font-family: 'Roboto';
     background-color: rgb(234, 234, 234);
-    width: 1024px;
+    width: 1280px;
     margin: auto;
+}
+
+/*Bild unter header*/
+header>img {
+    max-width: 100%;
+    height: auto;
 }
 
 a {
@@ -39,15 +45,11 @@ h1 {
 
 
 
-/*Bild unter header*/
-header>img {
-    max-width: 100%;
-    height: auto;
-}
+
 
 
 main {
-    
+    width: 1024px;
     margin: auto;
     margin-top: 40px;
 }
@@ -66,8 +68,22 @@ article p {
 
 }
   /* Impressum */  
+  footer {
+    text-align: center;
+  }
+  
+  #impressum {
+    font-weight: bold;
+  }
+  
+  .inline-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+  }
+  
   .inline-list li {
-    display: inline-block;
     margin-right: 30px;
     font-family: "Roboto";
     font-size: smaller;
