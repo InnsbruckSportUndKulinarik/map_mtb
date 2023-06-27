@@ -17,7 +17,7 @@ let themaLayer = {
     huetten: L.featureGroup()
 }
 
-// WMTS und Leaflet TileLayerProvider Hintergrundlayer
+// WMTS und Leaflet TileLayerProvider Hintergrundlayer und thematische Layer 
 let layercontrol = L.control.layers({
     "Esri WorldTopoMap": L.tileLayer.provider("Esri.WorldTopoMap").addTo(map),
     "Orthofoto": L.tileLayer.provider("BasemapAT.orthofoto"),
@@ -69,10 +69,6 @@ L.control.rainviewer({
     opacity: 0.5
 }).addTo(map);
 
-
-
-
-
 // Hütten 
 function writeHuettenLayer(jsondata) {
     L.geoJSON(jsondata, {
@@ -98,7 +94,7 @@ function writeHuettenLayer(jsondata) {
         }
     }).addTo(themaLayer.huetten);
 }
-//Funktion ausführen, indem JSON gefetched wird
+//Funktion ausführen, indem JSON gefetched wird (Hütten)
 fetch("data/huetten_tirol_reduced.geojson")
     .then(response => response.json())
     .then(jsondata => {
@@ -107,6 +103,8 @@ fetch("data/huetten_tirol_reduced.geojson")
     .catch(error => {
         console.error("Error fetching GeoJSON data:", error);
     });
+
+
 //Haltestellen (Bus)
 function writeBusLayer(jsondata) {
     L.geoJSON(jsondata, {
@@ -127,7 +125,7 @@ function writeBusLayer(jsondata) {
         }
     }).addTo(themaLayer.stops_bus);
 }
-//Funktion ausführen, indem JSON gefetched wird
+//Funktion ausführen, indem JSON gefetched wird (Bus)
 fetch("data/bus_stop_reduced.geojson")
     .then(response => response.json())
     .then(jsondata => {
@@ -157,7 +155,7 @@ function writeTramLayer(jsondata) {
         }
     }).addTo(themaLayer.stops_tram);
 }
-//Funktion ausführen, indem JSON gefetched wird
+//Funktion ausführen, indem JSON gefetched wird (Tram)
 fetch("data/tram_stop_reduced.geojson")
     .then(response => response.json())
     .then(jsondata => {
@@ -191,6 +189,7 @@ const gpxfiles = [
     'data/GPX_bike/vom-rauschbrunnen-zur-hoettinger-alm.gpx'
 ];
 
+//Farben für Tracks
 let colors = [
     'red',
     'blue',
@@ -208,8 +207,7 @@ let colors = [
     'red'
 ];
 
-
-
+//Tracks in der Karte anzeigen, Marker beim Startpunkt und bei Wegpunkten hinzufügen, Höhenprofil bei Klicken anzeigen, Namen und weitere Informationen in Popup beim Klicken anzeigen 
 gpxfiles.forEach((gpxFile, index) => {
     new L.GPX(gpxFile, {
         async: true,
