@@ -52,7 +52,7 @@ map.on('locationfound', function onLocationFound(evt) {
     console.log(evt)
     let radius = Math.round(evt.accuracy)
     marker.setLatLng(evt.latlng)
-    marker.bindTooltip(`You are within ${radius} meters from this point`).openTooltip();
+    marker.bindTooltip(`Sie befinden sich ca. in einem Umkreis von ${radius} Meter von diesem Punkt. `).openTooltip();
     circle.setLatLng(evt.latlng);
     circle.setRadius(radius)
 });
