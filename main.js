@@ -167,6 +167,7 @@ fetch("data/tram_stop_reduced.geojson")
         console.error("Error fetching GeoJSON data:", error);
     });
 
+//Elevation Plugin
 let controlElevation = L.control.elevation({
     time: false,
     elevationDiv: "#profile",
@@ -223,16 +224,17 @@ gpxfiles.forEach((gpxFile, index) => {
                 '': 'icons/location.png'
             }, // add marker for way points
         }
-    }).addTo(map).on('loaded', function (e) {
-        const gpxLayer = e.target.addTo(map);
-        gpxLayer.on('click', function (event) {
-            let name = gpxLayer.get_name();
-            let gpx_path = gpxFile;
-            let website = 'https://www.innsbruck.info/radsport/mountainbike/mountainbike-touren/touren/' + gpx_path.replace(/^.*\/|\.gpx$/g, "") + '.html';
-            let firstLayer = gpxLayer.getLayers()[0];
-            firstLayer.bindPopup(`<b>${name}</b><br> <a href=${website} target="_blank">Weitere Informationen</a>`
-            ).openPopup()
-        });
-    })
-})
+    }).on('click', function (event) {
+        controlElevation.load(gpxFile);
+        controlElevation.clear();
+    }).addTo(map).on('click', function (e) {
+        const gpxLayer = e.target;
+        let name = gpxLayer.get_name();
+        let gpx_path = gpxFile;
+        let website = 'https://www.innsbruck.info/radsport/mountainbike/mountainbike-touren/touren/' + gpx_path.replace(/^.*\/|\.gpx$/g, "") + '.html';
+        let firstLayer = gpxLayer.getLayers()[0];
+        firstLayer.bindPopup(`<b>${name}</b><br> <a href=${website} target="_blank">Weitere Informationen</a>`
+        ).openPopup()
+    });
+});
 
