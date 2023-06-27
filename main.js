@@ -205,13 +205,14 @@ gpxfiles.forEach((gpxFile, index) => {
                 '': 'icons/restaurant.png'
             },
         }
-    }).on('loaded', function (e) {
-        const gpxLayer = e.target;
-        gpxLayer.addTo(map);
-        gpxLayer.on('click',function(event){
-            const layer = event.layer;
-            controlElevation.clear();
-            controlElevation.addData(layer);
+    }).addTo(map)
+    .on('loaded', function (e) {
         });
     });
-});
+
+    const gpxLayer = e.target;
+    gpxLayer.on('click', function (event) {
+        const layer = event.layer;
+        controlElevation.clear();
+        controlElevation.addData(layer);
+    });
