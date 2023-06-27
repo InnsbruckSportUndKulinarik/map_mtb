@@ -173,7 +173,6 @@ let controlElevation = L.control.elevation({
 }).addTo(map);
 
 //GPX tracks 
-
 const gpxfiles = [
     'data/GPX_bike/aldranser-alm-554.gpx',
     'data/GPX_bike/gasthof-rauschbrunnen.gpx',
@@ -217,12 +216,12 @@ gpxfiles.forEach((gpxFile, index) => {
             color: colors[index % colors.length],
         },
         marker_options: {
-            startIconUrl: 'icons/start.png', // Remove start marker
+            startIconUrl: 'icons/start.png', // change start marker
             endIconUrl: '', // Remove end marker
             shadowUrl: '',// Remove shadow marker
             wptIconUrls: {
-                '': 'icons/restaurant.png'
-            },
+                '': 'icons/location.png'
+            }, // add marker for way points
         }
     }).addTo(map).on('loaded', function (e) {
         const gpxLayer = e.target.addTo(map);
