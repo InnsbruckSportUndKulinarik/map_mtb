@@ -7,7 +7,7 @@ let ibk = {
 // Karte initialisieren
 let map = L.map("map", {
     fullscreenControl: true
-}).setView([ibk.lat, ibk.lng], 9);
+}).setView([ibk.lat, ibk.lng], 12);
 
 // thematische Layer
 let themaLayer = {
@@ -191,6 +191,8 @@ const gpxfiles = [
 
 let colors = ['red', 'blue', 'green', 'orange', 'purple', 'yellow', 'pink', 'black', 'darkgreen', 'lightblue'];
 
+
+
 gpxfiles.forEach((gpxFile, index) => {
     new L.GPX(gpxFile, {
         async: true,
@@ -207,11 +209,11 @@ gpxfiles.forEach((gpxFile, index) => {
         }
     }).on('loaded', function (e) {
         const gpxLayer = e.target;
-        gpxLayer.addTo(map);
-        gpxLayer.on('click',function(event){
+        gpxLayer.on('click', function (event) {
             const layer = event.layer;
             controlElevation.clear();
             controlElevation.addData(layer);
         });
+        gpxLayer.addTo(map);
     });
 });
