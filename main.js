@@ -189,7 +189,22 @@ const gpxfiles = [
     'data/GPX_bike/vom-rauschbrunnen-zur-hoettinger-alm.gpx'
 ];
 
-let colors = ['red', 'blue', 'green', 'orange', 'purple', 'yellow', 'pink', 'black', 'darkgreen', 'lightblue', 'lightred', 'brown', 'darkblue', 'darkyellow'];
+let colors = [
+    'red',
+    'blue',
+    'green',
+    'orange',
+    'purple',
+    'yellow',
+    'pink',
+    'black',
+    'darkgreen',
+    'lightblue',
+    'darkred',
+    'brown',
+    'darkblue',
+    'red'
+];
 
 
 
@@ -217,6 +232,6 @@ gpxfiles.forEach((gpxFile, index) => {
             firstLayer.bindPopup(`<b>${name}</b><br> <a href=${website} target="_blank">Weitere Informationen</a>`
             ).openPopup()
         });
-    });
+    })
 })
 
