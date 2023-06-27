@@ -212,7 +212,6 @@ gpxfiles.forEach((gpxFile, index) => {
             const layer = event.layer;
             controlElevation.clear();
             controlElevation.addData(layer);
-            layer.addTo(map);
         });
     });
 });
