@@ -7,7 +7,7 @@ let ibk = {
 // Karte initialisieren
 let map = L.map("map", {
     fullscreenControl: true
-}).setView([ibk.lat, ibk.lng], 13);
+}).setView([ibk.lat, ibk.lng], 9);
 
 // thematische Layer
 let themaLayer = {
@@ -19,12 +19,12 @@ let themaLayer = {
 
 // WMTS und Leaflet TileLayerProvider Hintergrundlayer
 let layercontrol = L.control.layers({
-    "Esri WorldTopoMap": L.tileLayer.provider("Esri.WorldTopoMap"),
-    "Orthofoto": L.tileLayer.provider("BasemapAT.orthofoto").addTo(map),
-    "Geländeschummerung": L.tileLayer.provider("BasemapAT.surface").addTo(map)
+    "Esri WorldTopoMap": L.tileLayer.provider("Esri.WorldTopoMap").addTo(map),
+    "Orthofoto": L.tileLayer.provider("BasemapAT.orthofoto"),
+    "Geländeschummerung": L.tileLayer.provider("BasemapAT.surface")
 }, {
-    "ÖPNV-Bus": themaLayer.stops_bus,
-    "ÖPNV-Tram": themaLayer.stops_tram,
+    "ÖPNV-Bus": themaLayer.stops_bus.addTo(map),
+    "ÖPNV-Tram": themaLayer.stops_tram.addTo(map),
     "Hütten": themaLayer.huetten.addTo(map)
 }).addTo(map)
 
@@ -208,14 +208,11 @@ gpxfiles.forEach((gpxFile, index) => {
     }).on('loaded', function (e) {
         const gpxLayer = e.target;
         gpxLayer.addTo(map);
-        gpxLayer.on('click', function (event) {
+        gpxLayer.on('click',function(event){
             const layer = event.layer;
-            const name = layer.get_name();
-            const distance = layer.get_distance();
-            const ele_max = layer.get_elevation_max();
-            const elev_min = layer.get_elevation_min();
-            const elev_data = layer.get_elevation_data();
-            layer.bindPopup(`<b>Name: ${name}</b><br>Distance: ${distance}m<br>Elevation Min: ${elev_min}m<br>Elevation Max: ${ele_max}m<br>Average Elevation: ${elevationMean.toFixed(2)}m`).openPopup();
+            controlElevation.clear();
+            controlElevation.addData(layer);
+            layer.addTo(map);
         });
     });
 });
