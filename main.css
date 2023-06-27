@@ -123,3 +123,13 @@ nav ul li:hover>a {
   nav ul li ul li a:hover {
     background-color: #555;
   }
+
+  .image-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .image-description {
+    margin-left: 20px; /* Adjust the margin as needed */
+  }
+  
