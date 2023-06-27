@@ -172,6 +172,8 @@ let controlElevation = L.control.elevation({
     elevationDiv: "#profile",
 }).addTo(map);
 
+//GPX tracks 
+
 const gpxfiles = [
     'data/GPX_bike/aldranser-alm-554.gpx',
     'data/GPX_bike/gasthof-rauschbrunnen.gpx',
